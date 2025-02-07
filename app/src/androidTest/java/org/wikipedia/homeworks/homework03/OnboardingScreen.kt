@@ -13,7 +13,8 @@ val page1MainImage = listOf(
 
 val page1PrimaryText = listOf(
     AppTextView::class.java,
-    "primaryTextView"
+    "primaryTextView",
+    "onboarding_welcome_title_v2"
 )
 
 val page1SecondaryText = listOf(
@@ -56,7 +57,8 @@ val page2MainImage = listOf(
 
 val page2PrimaryText = listOf(
     AppTextView::class.java,
-    "primaryTextView"
+    "primaryTextView",
+    "onboarding_explore_title"
 )
 
 val page2SecondaryText = listOf(
