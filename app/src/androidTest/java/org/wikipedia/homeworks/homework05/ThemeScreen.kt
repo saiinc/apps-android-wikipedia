@@ -8,6 +8,7 @@ import io.github.kakaocup.kakao.switch.KSwitch
 import io.github.kakaocup.kakao.text.KButton
 import io.github.kakaocup.kakao.text.KTextView
 import org.wikipedia.R
+import com.google.android.material.R as materialR
 
 val pullDialogView = KView {
     withBackgroundColor(R.drawable.rounded_2dp_fill)
@@ -63,6 +64,9 @@ val descriptionReadingFocusMode = KTextView {
 
 val headerThemeSelect = KTextView {
     withText(R.string.color_theme_select)
+    isDescendantOfA {
+        withId(materialR.id.design_bottom_sheet)
+    }
 }
 
 val buttonThemeLight = KButton {
