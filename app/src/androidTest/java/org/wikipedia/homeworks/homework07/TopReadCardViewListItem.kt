@@ -8,7 +8,9 @@ import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 import org.wikipedia.R
 
-class TopReadCardViewListItem(matcher: Matcher<View>) : KRecyclerItem<TopReadCardViewListItem>(matcher) {
+class TopReadCardViewListItem(
+    matcher: Matcher<View>
+) : KRecyclerItem<TopReadCardViewListItem>(matcher) {
     val cardBaseNumberView = KTextView(matcher) {
         withId(R.id.baseNumberView)
     }
