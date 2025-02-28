@@ -19,7 +19,7 @@ class InTheNewsCardViewItem(
         withId(R.id.view_list_card_header_menu)
     }
 
-    val newsItem = KRecyclerView(
+    val inTheNewsItem = KRecyclerView(
         parent = matcher,
         builder = {
             withId(R.id.news_cardview_recycler_view)

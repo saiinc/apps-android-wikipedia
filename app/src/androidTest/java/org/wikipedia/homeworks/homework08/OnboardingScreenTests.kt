@@ -69,21 +69,16 @@ class OnboardingScreenTests: TestCase() {
         run {
             step("Проверка отображения английского языка") {
                 OnboardingScreen.slider.childAt<OnboardingPagerFirstItem>(0) {
-                    languages.childWith<LanguagesListItem> {
-                        withText("1.\t\tEnglish")
-                    }.isDisplayed()
-                    /*languages.childAt<LanguagesListItem>(0) {
-                        isDisplayed()
-                        languageLabel.isVisible()
-                        languageLabel.hasText("1.\t\tEnglish")
-                    }*/
+                    languages.childAt<LanguagesListItem>(0) {
+                        hasText("1.\t\tEnglish")
+                    }
                 }
             }
         }
     }
 
     @Test
-    fun languageScreenTest() {
+    fun languageAddTest() {
         run {
             step("Нажатие на кнопку добавления или редактирования языка") {
                 OnboardingScreen.slider.childAt<OnboardingPagerFirstItem>(0) {
@@ -95,7 +90,10 @@ class OnboardingScreenTests: TestCase() {
             }
             step("Выбор русского языка") {
                 AddALanguageScreen.languagesList.childAt<AddALanguageListItem>(2) {
-                    languageSubtitle.click()
+                    languageName.isDisplayed()
+                    languageName.click()
+                    //languageSubtitle.isDisplayed()
+                    //languageSubtitle.click()
                 }
             }
             step("Проверка добавленного русского языка") {
@@ -108,13 +106,9 @@ class OnboardingScreenTests: TestCase() {
             }
             step("Проверка отображения русского языка") {
                 OnboardingScreen.slider.childAt<OnboardingPagerFirstItem>(0) {
-                    languages.childWith<LanguagesListItem> {
-                        withText("2.\t\tРусский")
-                    }.isDisplayed()
-                    /*languages.childAt<LanguagesListItem>(1) {
-                        isDisplayed()
-                        languageLabel.hasText("2.\t\tРусский")
-                    }*/
+                    languages.childAt<LanguagesListItem>(1) {
+                        hasText("2.\t\tРусский")
+                    }
                 }
             }
         }

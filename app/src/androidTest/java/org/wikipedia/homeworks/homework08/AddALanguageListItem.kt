@@ -11,6 +11,10 @@ class AddALanguageListItem(
     matcher: Matcher<View>
 ) : KRecyclerItem<AddALanguageListItem>(matcher) {
 
+    val languageName = KTextView(matcher) {
+        withId(R.id.localized_language_name)
+    }
+
     val languageSubtitle = KTextView(matcher) {
         withId(R.id.language_subtitle)
         withParent {
