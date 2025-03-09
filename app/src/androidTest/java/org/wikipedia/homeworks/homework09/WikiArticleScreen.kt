@@ -52,8 +52,4 @@ object WikiArticleScreen: KScreen<WikiArticleScreen>() {
     val articleDescription = KTextView {
         withId(R.id.articleDescription)
     }
-
-    val pageScroller = KScrollView {
-        withId(R.id.page_scroller_button)
-    }
 }
