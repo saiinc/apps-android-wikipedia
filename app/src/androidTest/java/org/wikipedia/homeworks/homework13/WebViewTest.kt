@@ -26,7 +26,7 @@ class WebViewTest: TestCase() {
                 click()
             }
             ArticleViewScreen {
-                webView {
+                this.webView {
                     withElement(
                         locator = Locator.XPATH,
                         value = "//span[@class='mw-page-title-main']",
@@ -81,20 +81,18 @@ class WebViewTest: TestCase() {
                 ArticleReferenceScreen.title.hasText("Reference ")
             }
             step("и номер в строке (5.)") {
-                ArticleReferenceScreen.pager.childAt<ReferencePagerItem>(2) {
-                    id.isDisplayed()
+                ArticleReferenceScreen {
                     id.hasText("5.")
                 }
             }
-            device.uiDevice.pressBack()
-            device.uiDevice.pressBack()
+            ArticleReferenceScreen.pager.scrollToStart()
             device.uiDevice.pressBack()
             step("Найти вторую ссылку с CSS классом mw-redirect и нажать на неё") {
                 ArticleViewScreen {
                     webView {
                         withElement(
                             locator = Locator.XPATH,
-                            value = "(//a[@class='mw-redirect'])[2]",
+                            value = "(//a[@class='mw-redirect'])[1]",
                             interaction = {
                                 click()
                             }

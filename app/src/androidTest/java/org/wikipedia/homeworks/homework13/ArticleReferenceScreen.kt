@@ -15,6 +15,17 @@ object ArticleReferenceScreen : KScreen<ArticleReferenceScreen>() {
         withId(R.id.reference_title_text)
     }
 
+    // В общем, когда нужно описать видимый элемент пейджера можно использовать такие матчеры:
+    val id = KTextView {
+        withId(R.id.reference_id)
+        isDisplayed()
+    }
+    /* не описывая сам пейджер и его блоки
+В этом случае будет ссылаться на видимый элемент с соответствующим ID.
+Не должно получиться так, что у пейджера видно сразу несколько слайдов
+     */
+
+
     val pager = KViewPager2(
         builder = {
             withId(R.id.reference_pager)
