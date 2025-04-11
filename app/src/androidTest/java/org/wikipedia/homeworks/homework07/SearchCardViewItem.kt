@@ -1,6 +1,7 @@
 package org.wikipedia.homeworks.homework07
 
 import android.view.View
+import io.github.kakaocup.kakao.edit.KEditText
 import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.recycler.KRecyclerItem
 import io.github.kakaocup.kakao.text.KTextView
@@ -12,7 +13,7 @@ class SearchCardViewItem(matcher: Matcher<View>) : KRecyclerItem<SearchCardViewI
         withDrawable(R.drawable.ic_search_white_24dp)
     }
 
-    val searchText = KTextView(matcher) {
+    val searchText = KEditText(matcher) {
         withText(R.string.search_hint)
     }
 
