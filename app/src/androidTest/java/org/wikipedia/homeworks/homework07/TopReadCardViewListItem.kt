@@ -7,10 +7,10 @@ import io.github.kakaocup.kakao.recycler.KRecyclerItem
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 import org.wikipedia.R
+import org.wikipedia.homeworks.homework20.name
+import org.wikipedia.homeworks.homework20.withParent
 
-class TopReadCardViewListItem(
-    matcher: Matcher<View>
-) : KRecyclerItem<TopReadCardViewListItem>(matcher) {
+class TopReadCardViewListItem(matcher: Matcher<View>): KRecyclerItem<TopReadCardViewListItem>(matcher) {
     val cardBaseNumberView = KTextView(matcher) {
         withId(R.id.baseNumberView)
     }
@@ -26,12 +26,16 @@ class TopReadCardViewListItem(
         withId(R.id.numberView)
     }
 
-    val cardTitle = KTextView(matcher) {
-        withId(R.id.view_list_card_item_title)
+    val cardTitle by lazy {
+        KTextView(matcher) {
+            withId(R.id.view_list_card_item_title)
+        }.name(withParent("Заголовок статьи"))
     }
 
-    val cardSubtitle = KTextView(matcher) {
-        withId(R.id.view_list_card_item_subtitle)
+    val cardSubtitle by lazy {
+        KTextView(matcher) {
+            withId(R.id.view_list_card_item_subtitle)
+        }.name(withParent("Описание"))
     }
 
     val cardGraph = KView(matcher) {

@@ -7,12 +7,19 @@ import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 import org.wikipedia.R
+import org.wikipedia.homeworks.homework20.ExploreScreenNew.feed
+import org.wikipedia.homeworks.homework20.getName
+import org.wikipedia.homeworks.homework20.invokeAtIndex
+import org.wikipedia.homeworks.homework20.name
+import org.wikipedia.homeworks.homework20.withParent
 
 class InTheNewsCardViewItem(
     matcher: Matcher<View>
 ) : KRecyclerItem<InTheNewsCardViewItem>(matcher) {
-    val headerTitle = KTextView(matcher) {
-        withId(R.id.view_card_header_title)
+    val headerTitle by lazy {
+        KTextView(matcher) {
+            withId(R.id.view_card_header_title)
+        }.name(withParent("Заголовок"))
     }
 
     val headerMenu = KImageView(matcher) {
@@ -28,4 +35,8 @@ class InTheNewsCardViewItem(
             itemType(::InTheNewsCardViewListItem)
         }
     )
+
+    fun inTheNewsListItem(index: Int, function: InTheNewsCardViewListItem.() -> Unit) {
+        inTheNewsItem.invokeAtIndex(index, function)
+    }
 }

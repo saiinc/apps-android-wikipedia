@@ -19,9 +19,9 @@ class StepsClassCheck: TestCase(kaspressoBuilder = Kaspresso.Builder.withForcedA
     fun deviceNetworkTest() {
         run { 
             steps {
-                disableNetwork(device)
+                disableNetwork()
                 sleep(5000)
-                enableNetwork(device)
+                enableNetwork()
             }
         }
     }
@@ -94,11 +94,11 @@ class StepsClassCheck: TestCase(kaspressoBuilder = Kaspresso.Builder.withForcedA
     fun screenOrientationTest() {
         run {
             steps {
-                setOrientationLeft(device)
+                setOrientationLeft()
                 sleep(5000)
-                setOrientationRight(device)
+                setOrientationRight()
                 sleep(5000)
-                setOrientationNatural(device)
+                setOrientationNatural()
                 sleep(5000)
             }
         }

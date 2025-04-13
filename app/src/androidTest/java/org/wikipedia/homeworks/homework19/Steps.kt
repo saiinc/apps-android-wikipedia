@@ -1,6 +1,5 @@
 package org.wikipedia.homeworks.homework19
 
-import com.kaspersky.kaspresso.device.Device
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo
 import io.github.kakaocup.kakao.check.CheckableActions
@@ -38,15 +37,15 @@ class Steps(val testContext: TestContext<*>) {
         }
     }
 
-    fun disableNetwork(device: Device) {
+    fun disableNetwork() {
         execute("Отключить сеть") {
-            device.network.disable()
+            testContext.device.network.disable()
         }
     }
 
-    fun enableNetwork(device: Device) {
+    fun enableNetwork() {
         execute("Включить сеть") {
-            device.network.enable()
+            testContext.device.network.enable()
         }
     }
 
@@ -62,21 +61,21 @@ class Steps(val testContext: TestContext<*>) {
         }
     }
 
-    fun setOrientationLeft(device: Device) {
+    fun setOrientationLeft() {
         execute("Повернуть дисплей влево") {
-            device.uiDevice.setOrientationLeft()
+            testContext.device.uiDevice.setOrientationLeft()
         }
     }
 
-    fun setOrientationRight(device: Device) {
+    fun setOrientationRight() {
         execute("Повернуть дисплей вправо") {
-            device.uiDevice.setOrientationRight()
+            testContext.device.uiDevice.setOrientationRight()
         }
     }
 
-    fun setOrientationNatural(device: Device) {
+    fun setOrientationNatural() {
         execute("Повернуть дисплей в естественную позицию") {
-            device.uiDevice.setOrientationNatural()
+            testContext.device.uiDevice.setOrientationNatural()
         }
     }
 
