@@ -169,6 +169,7 @@ apply from: '../gradle/src/ktlint.gradle'
 
 dependencies {
     implementation libs.androidx.espresso.intents
+    implementation libs.androidx.media3.common.ktx
 
 
     // To keep the Maven Central dependencies up-to-date

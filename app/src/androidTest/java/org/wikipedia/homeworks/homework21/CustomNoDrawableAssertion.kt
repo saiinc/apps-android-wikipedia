@@ -9,7 +9,7 @@ import org.junit.Assert
 class CustomNoDrawableAssertion: ViewAssertion {
     override fun check(view: View?, noViewFoundException: NoMatchingViewException?) {
         if (view is ImageView) {
-            Assert.assertTrue(view.drawable == null)
+            Assert.assertNull(view.drawable)
         } else {
             throw (noViewFoundException ?: AssertionError("View is not text"))
         }

@@ -11,6 +11,7 @@ import org.wikipedia.homeworks.homework07.FeaturedArticleItem
 import org.wikipedia.homeworks.homework07.InTheNewsCardViewItem
 import org.wikipedia.homeworks.homework07.SearchCardViewItem
 import org.wikipedia.homeworks.homework07.TopReadCardViewItem
+import org.wikipedia.homeworks.homework22.invokeById
 
 object ExploreScreenNew: NamedKScreen<ExploreScreenNew>() {
     override val screenName = "Главный экран"
@@ -23,19 +24,21 @@ object ExploreScreenNew: NamedKScreen<ExploreScreenNew>() {
         }.name(withParent("Заголовок"))
     }
 
-    val feed = KRecyclerView(
-        builder = {
-            withId(R.id.feed_view)
-        },
-        itemTypeBuilder = {
-            itemType(::SearchCardViewItem)
-            itemType(::AnnouncementCardViewItem)
-            itemType(::DayHeaderCardViewItem)
-            itemType(::FeaturedArticleItem)
-            itemType(::TopReadCardViewItem)
-            itemType(::InTheNewsCardViewItem)
-        }
-    ).name(withParent("Список блоков"))
+    val feed by lazy {
+        KRecyclerView(
+            builder = {
+                withId(R.id.feed_view)
+            },
+            itemTypeBuilder = {
+                itemType(::SearchCardViewItem)
+                itemType(::AnnouncementCardViewItem)
+                itemType(::DayHeaderCardViewItem)
+                itemType(::FeaturedArticleItem)
+                itemType(::TopReadCardViewItem)
+                itemType(::InTheNewsCardViewItem)
+            }
+        ).name(withParent("Список блоков"))
+    }
 
     val bottomMenuIconMore = KView {
         withId(R.id.nav_tab_more)
@@ -43,6 +46,16 @@ object ExploreScreenNew: NamedKScreen<ExploreScreenNew>() {
 
     val moreMenuSettings = KView {
         withId(R.id.main_drawer_settings_container)
+    }
+
+    fun announcementItemById(targetIndex: Int = 0, function: AnnouncementCardViewItem.() -> Unit) {
+        feed.invokeById(
+            targetIndex = targetIndex,
+            targetId = R.id.view_announcement_text,
+            blockName = "Announcement Card",
+            limiter = (4 * targetIndex).coerceAtLeast(5),
+            function = function
+        )
     }
 
     fun topReadItem(index: Int, function: TopReadCardViewItem.() -> Unit) {
