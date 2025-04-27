@@ -8,6 +8,7 @@ import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.edit.EditableActions
 import io.github.kakaocup.kakao.text.TextViewAssertions
+import org.wikipedia.homeworks.homework24.KWebViewElement
 
 class Steps(val testContext: TestContext<*>) {
 
@@ -112,6 +113,16 @@ class Steps(val testContext: TestContext<*>) {
     fun isDisplayed(item: BaseAssertions, name: String) {
         execute("Элемент '$name' отображается на экране") {
             item.isDisplayed()
+        }
+    }
+
+    fun scroll(item: KWebViewElement) {
+        execute("Scroll '${item.getName()}'") {
+            testContext.flakySafely(
+                timeoutMs = 150000
+            ) {
+                item.executeAction { scroll() }
+            }
         }
     }
 }
