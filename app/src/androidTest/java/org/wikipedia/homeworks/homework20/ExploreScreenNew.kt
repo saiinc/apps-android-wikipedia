@@ -44,6 +44,12 @@ object ExploreScreenNew: NamedKScreen<ExploreScreenNew>() {
         withId(R.id.nav_tab_more)
     }
 
+    val savedArticles by lazy {
+        KView {
+            withId(R.id.nav_tab_reading_lists)
+        }.name(withParent("Сохраненные статьи"))
+    }
+
     val moreMenuSettings = KView {
         withId(R.id.main_drawer_settings_container)
     }

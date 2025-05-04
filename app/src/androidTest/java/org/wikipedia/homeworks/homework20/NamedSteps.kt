@@ -1,16 +1,31 @@
 package org.wikipedia.homeworks.homework20
 
+import com.kaspersky.kaspresso.device.Device
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo
 import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
-import io.github.kakaocup.kakao.web.KWebView
-import org.wikipedia.homeworks.homework24.KWebViewBaseElement
 import org.wikipedia.homeworks.homework24.KWebViewElement
+import org.wikipedia.homeworks.homework26.CloseCustomizeYourToolbarSmartScenario
+import org.wikipedia.homeworks.homework26.CloseSyncReadingsListSmartScenario
+import org.wikipedia.homeworks.homework26.ListOfSmartScenario
+import com.kaspersky.kaspresso.testcases.core.testassistants.TestAssistantsProvider
 
-class NamedSteps(val testContext: TestContext<*>) {
+class NamedSteps(private val testContext: TestContext<*>) {
+    private val listOfSmartScenario = ListOfSmartScenario(
+        listOf(
+            CloseCustomizeYourToolbarSmartScenario(testContext),
+            CloseSyncReadingsListSmartScenario(testContext),
+        )
+    )
     private fun execute(textOfStep: String, actions: (StepInfo) -> Unit){
-        testContext.step(textOfStep, actions)
+        try {
+            testContext.step(textOfStep, actions)
+        } catch (e: Throwable) {
+            if (listOfSmartScenario.execute()) {
+                testContext.step(textOfStep, actions)
+            } else throw e
+        }
     }
 
     operator fun invoke(function: NamedSteps.() -> Unit) {
@@ -47,6 +62,13 @@ class NamedSteps(val testContext: TestContext<*>) {
             ) {
                 element.executeAction { scroll() }
             }
+        }
+    }
+
+    fun swipeDown() {
+        execute("Делаем свайп вниз") {
+            testContext.device.uiDevice.swipe(500, 500, 500, 900, 20)
+
         }
     }
 
