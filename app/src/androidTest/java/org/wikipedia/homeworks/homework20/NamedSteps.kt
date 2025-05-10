@@ -10,6 +10,9 @@ import org.wikipedia.homeworks.homework26.CloseCustomizeYourToolbarSmartScenario
 import org.wikipedia.homeworks.homework26.CloseSyncReadingsListSmartScenario
 import org.wikipedia.homeworks.homework26.ListOfSmartScenario
 import com.kaspersky.kaspresso.testcases.core.testassistants.TestAssistantsProvider
+import io.github.kakaocup.kakao.common.views.KView
+import io.github.kakaocup.kakao.text.KTextView
+import io.github.kakaocup.kakao.text.TextViewAssertions
 
 class NamedSteps(private val testContext: TestContext<*>) {
     private val listOfSmartScenario = ListOfSmartScenario(
@@ -69,6 +72,12 @@ class NamedSteps(private val testContext: TestContext<*>) {
         execute("Делаем свайп вниз") {
             testContext.device.uiDevice.swipe(500, 500, 500, 900, 20)
 
+        }
+    }
+
+    fun hasText(element: TextViewAssertions, text: String) {
+        execute("Проверяем у элемента '${(element as BaseActions).getName()}' наличие текста '$text'") {
+            element.hasText(text)
         }
     }
 
