@@ -1,6 +1,5 @@
 package org.wikipedia.homeworks.homework20
 
-import com.kaspersky.kaspresso.device.Device
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo
 import io.github.kakaocup.kakao.common.actions.BaseActions
@@ -9,10 +8,9 @@ import org.wikipedia.homeworks.homework24.KWebViewElement
 import org.wikipedia.homeworks.homework26.CloseCustomizeYourToolbarSmartScenario
 import org.wikipedia.homeworks.homework26.CloseSyncReadingsListSmartScenario
 import org.wikipedia.homeworks.homework26.ListOfSmartScenario
-import com.kaspersky.kaspresso.testcases.core.testassistants.TestAssistantsProvider
-import io.github.kakaocup.kakao.common.views.KView
-import io.github.kakaocup.kakao.text.KTextView
 import io.github.kakaocup.kakao.text.TextViewAssertions
+import org.wikipedia.homeworks.homework29.Credentials
+import org.wikipedia.homeworks.homework29.LoginScreen
 
 class NamedSteps(private val testContext: TestContext<*>) {
     private val listOfSmartScenario = ListOfSmartScenario(
@@ -33,6 +31,23 @@ class NamedSteps(private val testContext: TestContext<*>) {
 
     operator fun invoke(function: NamedSteps.() -> Unit) {
         function()
+    }
+
+    fun authorize(user: String) {
+        execute("Авторизоваться") {
+            val password = Credentials.getPassword(user)
+            LoginScreen.loginField.typeText(user)
+            LoginScreen.passwordField.typeText(password)
+            Thread.sleep(1000)
+            LoginScreen.loginButton.click()
+        }
+
+    }
+
+    fun sleep(millis: Long) {
+        execute("Сделать паузу в $millis ms") {
+            Thread.sleep(millis)
+        }
     }
 
     fun click(element: BaseActions) {

@@ -7,10 +7,13 @@ import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import io.qameta.allure.kotlin.AllureId
 import org.junit.Rule
 import org.junit.Test
+import org.wikipedia.BuildConfig
 import org.wikipedia.homeworks.homework08.OnboardingScreen
 import org.wikipedia.homeworks.homework19.namedSteps
 import org.wikipedia.homeworks.homework20.ExploreScreenNew
 import org.wikipedia.homeworks.homework22.searchCardItemById
+import org.wikipedia.homeworks.homework29.Credentials
+import org.wikipedia.homeworks.homework29.Users
 import org.wikipedia.main.MainActivity
 
 class RuleTest: TestCase(kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport()) {
@@ -30,7 +33,11 @@ class RuleTest: TestCase(kaspressoBuilder = Kaspresso.Builder.withForcedAllureSu
     @AllureId("123")
     fun ruleTest() {
         run {
+            BuildConfig.HOME_WORK_NUMNER
+            val login = Users.alphaLogin
+            val password = Credentials.getPassword(login)
             namedSteps {
+                authorize(login)
                 click(OnboardingScreen.skipButton)
                 ExploreScreenNew {
                     searchCardItemById {

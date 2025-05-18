@@ -20,8 +20,10 @@ object OnboardingScreen : NamedKScreen<OnboardingScreen>() {
         }.name(withParent("Кнопка skip"))
     }
 
-    val continueButton = KButton {
-        withId(R.id.fragment_onboarding_forward_button)
+    val continueButton by lazy {
+        KButton {
+            withId(R.id.fragment_onboarding_forward_button)
+        }.name(withParent("Кнопка Continue"))
     }
 
     val slider = KViewPager2(
